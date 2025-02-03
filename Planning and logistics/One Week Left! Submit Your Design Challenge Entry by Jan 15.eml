@@ -1,0 +1,746 @@
+Received: from SJ0PR01MB6365.prod.exchangelabs.com (2603:10b6:a03:292::15) by
+ MW2PR0102MB3321.prod.exchangelabs.com with HTTPS; Wed, 8 Jan 2025 16:00:18
+ +0000
+Received: from CH0PR03CA0368.namprd03.prod.outlook.com (2603:10b6:610:119::17)
+ by SJ0PR01MB6365.prod.exchangelabs.com (2603:10b6:a03:292::15) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8335.12; Wed, 8 Jan 2025 16:00:15 +0000
+Received: from CH3PEPF0000000C.namprd04.prod.outlook.com
+ (2603:10b6:610:119:cafe::4b) by CH0PR03CA0368.outlook.office365.com
+ (2603:10b6:610:119::17) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8335.11 via Frontend Transport; Wed,
+ 8 Jan 2025 16:00:15 +0000
+Authentication-Results: spf=pass (sender IP is 158.247.23.148)
+ smtp.mailfrom=bf06x.hubspotemail.net; dkim=pass (signature was verified)
+ header.d=bf06x.hubspotemail.net;dmarc=pass action=none
+ header.from=codepath.org;compauth=pass reason=100
+Received-SPF: Pass (protection.outlook.com: domain of bf06x.hubspotemail.net
+ designates 158.247.23.148 as permitted sender)
+ receiver=protection.outlook.com; client-ip=158.247.23.148;
+ helo=bid47om.bf06x.hubspotemail.net; pr=C
+Received: from bid47om.bf06x.hubspotemail.net (158.247.23.148) by
+ CH3PEPF0000000C.mail.protection.outlook.com (10.167.244.39) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8335.7 via Frontend Transport; Wed, 8 Jan 2025 16:00:14 +0000
+Received: by 172.16.47.42 with SMTP id a0b2377bl4ybydrsz68yi673w4w4lb35shhzeyn2klk;
+        Wed, 8 Jan 2025 16:00:14 GMT
+DKIM-Signature: v=1; s=hs1; d=bf06x.hubspotemail.net; 
+        i=@bf06x.hubspotemail.net; 
+        h=sender:from:from:reply-to:to:to:cc:cc:subject:subject:list-unsubscribe:form-sub:feedback-id:list-unsubscribe-post; 
+        a=rsa-sha256; c=relaxed/relaxed; 
+        bh=DlkF5KfYMznMrL9uHqxcHy8EgRkAJCGP4dBshjngOnU=; 
+        b=14WdIjyfGMpJ8H9fOLWFijdKyMMz3qoz+slzV+RURrFV4co4dq1i8LPLzCGiu1
+         SkzsKVmpahl+DXT5HqQoXk1i9x9QlJkW649Kf689MrFSFWLAtCNoY0iBDz0NmrG
+         tdBmgKTyHNPg3zcAMCvWv6bYEQ4X5OJoOpU65rfTX13YrF8wSWik4No5gInq9JX
+         /g+NOzE8wPxzuKZNvUadwDmwdU3WdSHtuQWnaH2pLBylnJwjdj0Y6fJHyxjd/Tf
+         kbeNSGDtw3N+NXYdZq9LRRuXE3WPA00yf9Fy8wjXSf+xSUAWEpPpXadj+nbxO6J
+         E/ZL5fTM3ZoEXdJQBdsrD16Ixa/A==; q=dns/txt; t=1736352014; 
+        x=1736614814;
+DKIM-Signature: v=1; s=hs1; d=codepath.org; i=@codepath.org; 
+        h=sender:from:from:reply-to:to:to:cc:cc:subject:subject:list-unsubscribe:form-sub:feedback-id:list-unsubscribe-post; 
+        a=rsa-sha256; c=relaxed/relaxed; 
+        bh=DlkF5KfYMznMrL9uHqxcHy8EgRkAJCGP4dBshjngOnU=; 
+        b=R3GKp/Qee1aad6HGNm2pcm6OCL9bav6+26pwfNmweSEdCfLoyrCBmkU3uz1sX+
+         YuTFxM9hqi/3gwGKsplY5seowQXs8YXvovFfwTXjcum3Tm84mizI+uynUjFf/x3
+         i1aq4TeLh2qwnRZJ/EOxCa47LGL0Emw2IaBBsVjp6blRIFJCQWFEclxfZEg9YVV
+         tIbHBBykwUTPby8WfVYbddBiRoq8Y1wTOaWwrf4ozd9taZ2fCkfOkeNEiiAWTDS
+         jSw7e4U2xNQXW983w7PPguQADeVJScSJHYEnlUdwiC4bcaBRDzfaWZDZo5FTgxm
+         51akq9For9BbkmVeTY21630KQjig==; q=dns/txt; t=1736352014; 
+        x=1736614814;
+Return-Path: 1axb7rrcpqtxkemiosam9pzlwnymns6idrp467-nzhuang1=student.gsu.edu@bf06x.hubspotemail.net
+X-HS-Cid: 1axfze4gaw55sgpfno3p00zhukohlaqpjosedv
+List-Unsubscribe: <mailto:1axdbuk57gtoa6s3nvanbzm89465coyh7g6nyr-nzhuang1=student.gsu.edu@bf06x.hubspotemail.net?subject=unsubscribe>, <https://hs-5340557.s.hubspotemail.net/subscription-preferences/v2/unsubscribe-all?data=W2nXS-N30h-RNW3S-RhN3856J8W2-J1vk3XYhHHW49l3G63VRF9lW43PQJN4cH9FTW4tnz8s32jDfmW1Nprjy3T25V-W3XX53b3D_93FW1SvlGT30H1GfW1XpT-s1_l6MYW3LQQf-1Xsjz6W3GVyKN43TCf5W3CddGx2PCD-ZW3LPBNJ2qFf51W4kHN162PsG-pW2PKSlP2RLylBW2qVCXn3Vyj5QW2YrXsx2zPG07W45q9rG2-fg7FW3jgNVg45prkcW2sK8z33GJBjzW3VMvRp45NRdbW4hHCwX4tmmDvW3gbpc143NzymW2qCCdS1XcVXbW2PCBZk3ZSZZvW2HBz8m41QqDXW3Q-bTS1Vnkz8W3gm6Dw3jnBQFW3T3qtY3SCQGXW2HYH7S2F-8p9W1S2H8s38cnqRW1VffkD3P97gdW3zgDsM23r727W2t1MmQ4kFmyWW2qBQRQ2FK3ZvW1VzMBL21hmYGW2MnPf61Vy9qLW1Xnxhb3GMvF0W3N_-652p6jnYW2PlvxG4cwv2BW1Nxvjy34pNZrW3gpCwW3LY6HKW2-qVl-34jnYkW3j7gmr1Zm76kW3blkh44k8xlL0>
+Date: Wed, 8 Jan 2025 11:00:14 -0500
+From: CodePath Career Center <careercenter@codepath.org>
+Reply-To: careercenter@codepath.org
+To: nzhuang1@student.gsu.edu
+Message-ID: <1736352014218.2ac7d2e7-0ca4-4812-b2c3-b5fae1ce3d24@bf06x.hubspotemail.net>
+Subject: One Week Left! Submit Your Design Challenge Entry by Jan 15
+Content-Type: multipart/alternative;
+	boundary="----=_Part_170994_474257201.1736352014481"
+X-Report-Abuse-To: abuse@hubspot.com (see
+ https://policy.hubspot.com/abuse-complaints)
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+X-MS-Exchange-Organization-ExpirationStartTime: 08 Jan 2025 16:00:14.9524
+ (UTC)
+X-MS-Exchange-Organization-ExpirationStartTimeReason: OriginalSubmit
+X-MS-Exchange-Organization-ExpirationInterval: 1:00:00:00.0000000
+X-MS-Exchange-Organization-ExpirationIntervalReason: OriginalSubmit
+X-MS-Exchange-Organization-Network-Message-Id: 086c691f-0d44-4dde-91d1-08dd2ffd8a45
+X-EOPAttributedMessage: 0
+X-EOPTenantAttributedMessage: 704d822c-358a-4784-9a16-49e20b75f941:0
+X-MS-Exchange-Organization-MessageDirectionality: Incoming
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH3PEPF0000000C:EE_|SJ0PR01MB6365:EE_|MW2PR0102MB3321:EE_
+X-MS-Exchange-Organization-AuthSource: CH3PEPF0000000C.namprd04.prod.outlook.com
+X-MS-Exchange-Organization-AuthAs: Anonymous
+X-MS-Office365-Filtering-Correlation-Id: 086c691f-0d44-4dde-91d1-08dd2ffd8a45
+X-MS-Exchange-AtpMessageProperties: SA|SL
+X-MS-Exchange-Organization-SCL: -1
+X-Microsoft-Antispam: BCL:5;ARA:13230040|4022899009|69100299015|29132699027|8096899003|4076899003;
+X-Forefront-Antispam-Report: CIP:158.247.23.148;CTRY:US;LANG:en;SCL:-1;SRV:;IPV:NLI;SFV:SFE;H:bid47om.bf06x.hubspotemail.net;PTR:bid47om.bf06x.hubspotemail.net;CAT:NONE;SFS:(13230040)(4022899009)(69100299015)(29132699027)(8096899003)(4076899003);DIR:INB;
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jan 2025 16:00:14.8587
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 086c691f-0d44-4dde-91d1-08dd2ffd8a45
+X-MS-Exchange-CrossTenant-Id: 704d822c-358a-4784-9a16-49e20b75f941
+X-MS-Exchange-CrossTenant-AuthSource: CH3PEPF0000000C.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR01MB6365
+X-MS-Exchange-Transport-EndToEndLatency: 00:00:04.0275660
+X-MS-Exchange-Processed-By-BccFoldering: 15.20.8335.010
+X-Microsoft-Antispam-Mailbox-Delivery:
+	wl:1;pcwl:1;ucf:0;jmr:0;auth:0;dest:I;ENG:(910001)(944506478)(944626604)(920097)(811239)(255002)(410001)(930097)(140003)(1420198);
+X-Microsoft-Antispam-Message-Info:
+	=?Windows-1252?Q?Sd6xD0qZuOp+rk8DLy0Rl9u+54lj37C/oq9pMK6i68lhnhwHVcSS4/qP?=
+ =?Windows-1252?Q?fGhaEAq18rfvpd2bOWtTENhZZN/XMrVVqOOTzOeiR7Zzn4lTzxhpYxlq?=
+ =?Windows-1252?Q?snCfn547kk9yFATrKlINfNRrz2cp1LgawrhZfCF/sXPnhlOr5JNwuxvX?=
+ =?Windows-1252?Q?uy07I5nHJn7ie8BdKrnV1qvu85QfNTsmlbjSQ79Ugn8710l9bD7FEZ15?=
+ =?Windows-1252?Q?KT4pYxlguLS9Dc+E6jzjcT1ngLYCgyTaJebECtXNicLGRd+Y+C2oRGOH?=
+ =?Windows-1252?Q?2iRznne7H6r5Cc2+8E5QHnuOXTteQnD7kxbDf87aRnwvJQD/3NK1HjME?=
+ =?Windows-1252?Q?TRNXNysaKdJ7m+qXsH1XqGAj/wP+4JPMghaEUGjtAUKWrOPV5iFd4Ucj?=
+ =?Windows-1252?Q?OgZwWi+73wJfBPLjbLmVh9lmEMcgSVjl5Q8X2WjbMOGfh0mP8602W8+D?=
+ =?Windows-1252?Q?Rzv5Z/I3QQHMb/RohmBgr4D5xGtSugg8anDykXpiqzDHiWZ92vJlxVOf?=
+ =?Windows-1252?Q?8hCVgU1ZccQ6WDfrf9glTWjACccaPWb+y3h9fltjq4uw6usfWltgdIk/?=
+ =?Windows-1252?Q?M9DGAkDTxyWe1DraorRmDbVKoX2zNQlGKAvFXXRddXoGD4+qXSAYcXy4?=
+ =?Windows-1252?Q?IHeiqbSk1xTeyKc4fKACeDtX99c8sWByGzZYBrO3UOKqYdctYmIclINX?=
+ =?Windows-1252?Q?op/mkuvLm+Kf5/BF5NeDFIjQcAjLomamafWmT+FpBu107ah1PE+pFJDZ?=
+ =?Windows-1252?Q?lK8EpwpqeGKrDFa/MBbd6ksstt9u7PXip2ZR4dVXMlA5R6AMAbUo3LpZ?=
+ =?Windows-1252?Q?Z+YaTdrUpAtfCPbs2YqLugt7JY/cPt8LCIlhA9tb/x+wJE1HgaNTQFxh?=
+ =?Windows-1252?Q?BCS11BvmlOcvaVn3Kc/KtMsX5AwI148CCcD9rU4Y0mZ/eHwvmcXr2dRy?=
+ =?Windows-1252?Q?Nb/7L1F3i5VWKHCh/OzR+FTotzyYFHliAUYxHLs73GIfXUxNNdMIMBEi?=
+ =?Windows-1252?Q?BfHRJFsM2uAb/Ep7cbmKcz7U1bDfPGsz1Cz8Vsev/A7NGC51qfLJ0NGE?=
+ =?Windows-1252?Q?RZflQqVLvpd8SsItSKO1DbAgI2vFs4GiUBjOCTVyc5E+oJaGKBF5WMAV?=
+ =?Windows-1252?Q?ama1gvfsrEILvUYSbKM7pIMdbF8ZuXqSC3gJ/YeOX3AIPAM2nIHEkVmk?=
+ =?Windows-1252?Q?CkSewUz+LZgn5/YlBNXczkqznP7r7laJmKSxCwNR6zoYzeyxie5T7Rdc?=
+ =?Windows-1252?Q?XQ5zvV1xwlY/q54CQH0SipWGWCP3DBlQaAKd9Rczl2HORZFuVgEojB+a?=
+ =?Windows-1252?Q?eB1WHeTGE6JhHajE+/7KipxXHPokGv0xMieq4PymQamOMOOO5GCBp6We?=
+ =?Windows-1252?Q?xq46QWlN0gAzRF2R84xJpFTuVbEI6P4lBmfPE8gwmtho2DOjNbt3NHA4?=
+ =?Windows-1252?Q?62yYk2J0a5lqm3ovdTdUnLGNr2NOBW1HQmlm9pZcydyhDZJjhsjdKDj4?=
+ =?Windows-1252?Q?hybPSJYxsRWx2nyynRypg/9tybIbIuwDYwsH5WL5xQs5+9fsA7udvQ5C?=
+ =?Windows-1252?Q?9bJNrU/zhtfHFjgMoLwkvJMol8cWA8m4oUQy83DUXmGUQ1JUkLikX/Mh?=
+ =?Windows-1252?Q?ZzVgWhU4LXAbijEsU2ZEHcAbCpzMmeztQKgGlRKU9LkDNvNSDMnV/E3O?=
+ =?Windows-1252?Q?Pg+jPQ0GLwr2Uf71SYXhoHCfElS83ONTJjFUN0HBaS2rOAr8Py1iYqCz?=
+ =?Windows-1252?Q?N5swj1167Y5u/AiRTS2UqWZdL1qruAE5WhRyjEcAIUTm647dPNQ/9vfl?=
+ =?Windows-1252?Q?90vItHT2xGq78mXpunOuVGElnBPbiA1MfuwRGjXk3gGaHoxeoWxppk+U?=
+ =?Windows-1252?Q?qwKlVagGb2nZJmzsCOP/cskCYYxEE8uR4mZyw4CpFDppQF1Ogu7yYcDY?=
+ =?Windows-1252?Q?2fRVXdqlar2qsWv9GSlT9pGDb/YIw2+rk4nq2g5sHdTDKnLX6odp98+u?=
+ =?Windows-1252?Q?Hnloj1xpnqmktuzSdgTgdW5aJuNkmZchi8cyvAfvGTyfyp7B1u7C1yKR?=
+ =?Windows-1252?Q?B/ig7HQ0g1jbbizSQY3OGKusbdvGuVjCEuF0ZAPs6oiC0GgAoBz5WN/e?=
+ =?Windows-1252?Q?ThzKJzY//zcWo9t9cMgGxz73+N0WnC8n9sCwFrovk8G0nO1l3JJQi68M?=
+ =?Windows-1252?Q?1ENZTp7b2orxWK/s6uEkaJy4UsAnv/WEbuI+xsLlS5oPlXJkxqvvokZt?=
+ =?Windows-1252?Q?u0nj0kH4n3sRE+uOiqCEA7mBlaGxWlwa+cbLz0aFij2THTCKbAqXXBdf?=
+ =?Windows-1252?Q?2FqhplVmtOti7JM4bJegotFFgNanEaS/2Vlcbucr4vo/bX36GdVif89z?=
+ =?Windows-1252?Q?7eklrHYmbkpGwBIJtm8NQ/jpOHDBAg2gt19t6Ij5CV67HJXxTfx9SMw9?=
+MIME-Version: 1.0
+
+------=_Part_170994_474257201.1736352014481
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Last chance to get feedback and input from Amazon designers at the design r=
+eview office hours!
+[AmazonNextxCodepath]
+
+Hi UX NeXus,
+
+
+
+This is it=E2=80=94the final stretch! You have just one week left to submit=
+ your entry for the AmazonNext Design Challenge. The deadline is Wednesday,=
+ January 15, 2025, at 11:59 PM ET.
+
+
+
+Submission Requirements:
+
+  1.  Slide Deck (10 slides) or Video Pitch (5 minutes max). For a slide de=
+ck the required format for submission is PDF, pptx, or ppt. - no other file=
+ types will be accepted.
+  2.  150-word summary answering these key questions:
+     *   Who is your customer?
+     *   What problem are you solving?
+     *   How does your design address this problem?
+  3.  Visual materials such as wireframes, screens, or sketches that explai=
+n your design.
+
+Design Submission Resources:
+
+  *   Design Submission Form<https://cDXtc04.na1.hubspotlinks.com/Ctc/T+113=
+/cDXtc04/VVHXzb8rVtq8VHWdLc990zMJW1k1H6J5qzgdhN52hRgF5nXHsW69t95C6lZ3l-W8K5=
+Fn95Ppf05W6mvb657SlQm0W3Wyk2v19yG2FW4CQ7R761vxzLW3MCQWV7NnGj2W7c_mZC50382MW=
+2d19ry7BHhHKW217gmK7MZPXxN33CrczHhd2-W5WHmqL2W4GRgN7D8Z9k_4ntKW1GZJK41VMxys=
+N715dDkdN8zbW1dCyCz5yMLmvW3SJd2N91JVlFW3cM1Sk2kWCd5W5H5z4P1w915DVpMP6x5zjTW=
+SW5z8WgQ88mvkVW88bVW14mMSsPVdNRgZ2sHKsBW6xzmwY6MYk3bW4PKdlM37jzBtW1dyyYF7xD=
+kBlW7wh-mv9jNJY8N3Mn_xJxsYG5W2x7x6Y235pt7W6d-nv1414bthW63jsGv1XddQjW6_TbYt8=
+P9bDFW4GmNmw5PkFvCW7MJc51202GwBW3bjD3F3CfGClW859NTg1mSbFqW8YWd651nZFmcW2JkN=
+vW4VnKrTf791Y_204>
+  *   Design Submission Guidance<https://cDXtc04.na1.hubspotlinks.com/Ctc/T=
++113/cDXtc04/VVHXzb8rVtq8VHWdLc990zMJW1k1H6J5qzgdhN52hRj63qn9gW95jsWP6lZ3n2=
+N3d7t7_P37VgW5cbC0S8Ph0QZW257kDF5W3h8dW353CkC79cj9VW3w6VyG533NCsVgJzwJ7Pt0N=
+QN998v3cHz68-W637Bjn5N9HmFW127MYg7r4HB7W7xB3rF5Nm_L8W75xf9j2n22HqW899jvS6JK=
+gPcW8g7kG-81HjFzW2HxMdF1gXh_ZW3VnSjn7bkWKFW2Z8Ypy2xfYd1W1jq_mV2Q8RhHW5Fkl5T=
+90qJMhW9krMWh6pjCZpW1y0pYg8DdxJ7W7fz1fg8Nc2DDW2nQl_N2_pvfnW7TD60Q1nH5HLN2lC=
+DRmj_g70W3PD3n22qXjl6W21FGxH5wJdWJW2VlWy93pkwl_W4YnwcS3Tnsm1W72rP0l6S8nTwW3=
+mBSC43r-RmHf6JgMXP04>
+
+If you have any questions or encounter any issues during the submission pro=
+cess, do not hesitate to reach out to amazonnext_support@amazon.com<mailto:=
+amazonnext_support@amazon.com> for assistance.
+
+Last Chance for Feedback:
+
+Join the final design review office hours for expert input on your project:
+
+  *   January 10, 3-4 PM ET
+  *   January 13, 4-5 PM ET
+
+Submission Tips:
+
+  *   Double-check all files before submission.
+  *   Ensure your submission aligns with the accessibility and inclusivity =
+theme of this year=E2=80=99s challenge.
+  *   Use the resources provided in the Design Challenge Brief<https://cDXt=
+c04.na1.hubspotlinks.com/Ctc/T+113/cDXtc04/VVHXzb8rVtq8VHWdLc990zMJW1k1H6J5=
+qzgdhN52hRj63qn9gW95jsWP6lZ3n6W1Kz7fk7cQ5tqVwJ5nk5lWSZwW6NTnk75WjkZvN1_Lwz2=
+SzbB4W7xnTS92wJ5SgW5d4rY04xx_0tW7C7GbP8cH2LmW6SJR2T1YglmkW2k1DGF67B8QDN8CKP=
+QfM0px7W6D2vJh8gyq1bW8h0rQY3DKyb2W6VRZ8976WyvyW841w8C7thXgZVWCgZN8LCY4bW2N7=
+fvq6YnZxTW6R1l_z6HmMJQW4YbQDh1PYcZ4W42NSTm5gN12hW2L6SvS7M2HYxW23WJwv1Y_-yMW=
+6sJS6s4VlKL5W1gXjf06ZP3G_W8rF1rS2lGNxZW3PF9dR6X5BsLW2WjGJ74nphm1W4Yh8Nx7Q18=
+L8W3_pqJ37NNvKBW2xNCG28zfSKSW9g6dml1WWm3vf7MR3Y804> to refine your work.
+
+If you=E2=80=99re facing challenges or have questions, email us at careerce=
+nter@codepath.org<mailto:careercenter@codepath.org>.
+
+
+
+We=E2=80=99re excited to see your creative ideas and wish you the best of l=
+uck in these final days!
+
+
+
+Best,
+
+The Team at CodePath
+
+CodePath, 5214F Diamond Heights Boulevard, Unit #1154, San Francisco, CA 94=
+131
+
+Unsubscribe<https://hs-5340557.s.hubspotemail.net/hs/preferences-center/en/=
+direct?data=3DW2nXS-N30h-S4W2KY4DH43R3t6W43P2m621pc_LW1SwCyH2zGVKjW2Hs1MZ3g=
+1Hs0W2xHysJ38mnK6W1_tzvs34hzJ7W1Ztms01SqJN7W2w38t-1QllBnW2qVz5H3bxdgXW1Zvbj=
+H2YqG82W3Z-Dzk1_jRVVW2Ww0mv3QSWXpW2FRGfg3djsStW250nYd3g71W4W4chptF4mpzJ8W41=
+qzsg2YNPtbW348Wcs43xdG0W4hn0gz4t2J34W3Xw0Tf3S_C9nW2YJ_Ry1Q3Hm6W3yZ4-h2313_s=
+W1Z94L64clDN9W20XnKK1BJTvvW4kFhdG47hMp1W4thGbf2TyMtlW43VVfq36fdJrW45r2By2YL=
+JnqW32DGnZ2-F6CzW21kvPf1LkpljW25g9nM2-8jM7W45DV0b4pG98gW45Bptv3675QQW3Kd8pK=
+23jRffW2xX0Wg3g6dPXW3LRcRf47Vt0rW4ktYfy2YpNcCW3R4sZ03857tTW1ScSzp4cNbcDW2r1=
+0W341WqqPW3Z-_jM43N-cDW3P044G4mKG_WW4ft-Rg3j9MMGW4hMQzs3DNzRLW2zyGGg49slNSW=
+34p1SW2nHvP9f2KFJjt04&utm_campaign=3DCareer%20Center%20Fall%202024&utm_sour=
+ce=3Dhs_automation&utm_medium=3Demail&utm_content=3D339617933&_hsenc=3Dp2AN=
+qtz-9Bh0Ms4ydVIrgEzaM5HOvi_TNc46inoqTTD7gK8qITN3EIJXcOVfKo_oxm9aiYoE-rkBv7R=
+lUdizRb4mzTlX62TN6IoA&_hsmi=3D339617933> Manage preferences<https://hs-5340=
+557.s.hubspotemail.net/hs/preferences-center/en/page?data=3DW2nXS-N30h-S4W2=
+KY4DH43R3t6W43P2m621pc_LW1SwCyH2zGVKjW2Hs1MZ3g1Hs0W2xHysJ38mnK6W1_tzvs34hzJ=
+7W1Ztms01SqJN7W2w38t-1QllBnW2qVz5H3bxdgXW1ZvbjH2YqG82W3Z-Dzk1_jRVVW2Ww0mv3Q=
+SWXpW2FRGfg3djsStW250nYd3g71W4W4chptF4mpzJ8W41qzsg2YNPtbW348Wcs43xdG0W4hn0g=
+z4t2J34W3Xw0Tf3S_C9nW2YJ_Ry1Q3Hm6W3yZ4-h2313_sW1Z94L64clDN9W20XnKK1BJTvvW4k=
+FhdG47hMp1W4thGbf2TyMtlW43VVfq36fdJrW45r2By2YLJnqW32DGnZ2-F6CzW21kvPf1Lkplj=
+W25g9nM2-8jM7W45DV0b4pG98gW45Bptv3675QQW3Kd8pK23jRffW2xX0Wg3g6dPXW3LRcRf47V=
+t0rW4ktYfy2YpNcCW3R4sZ03857tTW1ScSzp4cNbcDW2r10W341WqqPW3Z-_jM43N-cDW3P044G=
+4mKG_WW4ft-Rg3j9MMGW4hMQzs3DNzRLW2zyGGg49slNSW34p1SW2nHvP9f2KFJjt04&utm_cam=
+paign=3DCareer%20Center%20Fall%202024&utm_source=3Dhs_automation&utm_medium=
+=3Demail&utm_content=3D339617933&_hsenc=3Dp2ANqtz-9Bh0Ms4ydVIrgEzaM5HOvi_TN=
+c46inoqTTD7gK8qITN3EIJXcOVfKo_oxm9aiYoE-rkBv7RlUdizRb4mzTlX62TN6IoA&_hsmi=
+=3D339617933>
+
+
+
+CAUTION: This email was sent from someone outside of the university. Do not=
+ click links or open attachments unless you recognize the sender and know t=
+he content is safe.
+
+
+------=_Part_170994_474257201.1736352014481
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www=
+.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns=3D"http://www.w3=
+.org/1999/xhtml" xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:=
+v=3D"urn:schemas-microsoft-com:vml" lang=3D"en"><head><!--[if !mso]><!-- --=
+>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8"><l=
+ink rel=3D"stylesheet" type=3D"text/css" hs-webfonts=3D"true" href=3D"https=
+://fonts.googleapis.com/css?family=3DLato|Lato:i,b,bi"><!--<![endif]-->
+<title>One Week Left! Submit Your Design Challenge Entry by Jan 15</title>
+<meta property=3D"og:title" content=3D"One Week Left! Submit Your Design Ch=
+allenge Entry by Jan 15">
+<meta name=3D"twitter:title" content=3D"One Week Left! Submit Your Design C=
+hallenge Entry by Jan 15">
+<meta name=3D"x-apple-disable-message-reformatting">
+<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1.=
+0">
+<!--[if gte mso 9]>
+  <xml>
+      <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+      </o:OfficeDocumentSettings>
+  </xml>
+ =20
+  <style>
+    ul > li {
+      text-indent: -1em;
+    }
+  </style>
+<![endif]--><!--[if mso]>
+<style type=3D"text/css">
+ body, td {font-family: Arial, Helvetica, sans-serif;}
+ .hse-body-wrapper-table {background-color: #062F54;}
+</style>
+<![endif]-->
+<meta name=3D"generator" content=3D"HubSpot">
+<meta property=3D"og:url" content=3D"http://5340557.hs-sites.com/-temporary=
+-slug-19e6260d-84ad-4bf0-a66e-238d69341916">
+<meta name=3D"robots" content=3D"noindex,follow">
+<!--[if !((mso)|(IE))]><!-- --><style type=3D"text/css">@media only screen =
+and (max-width:639px){img.stretch-on-mobile,.hs_rss_email_entries_table img=
+,.hs-stretch-cta .hs-cta-img{height:auto !important;width:100% !important}
+.display_block_on_small_screens{display:block}.hs_padded{padding-left:20px =
+!important;padding-right:20px !important}
+.hs-hm,table.hs-hm{display:none}.hs-hd{display:block !important}table.hs-hd=
+{display:table !important}
+}@media only screen and (max-width:639px){.hse-border-m{border-left:1px sol=
+id #eaf0f6 !important;border-right:1px solid #eaf0f6 !important;box-sizing:=
+border-box}
+.hse-border-bottom-m{border-bottom:1px solid #eaf0f6 !important}.hse-border=
+-top-m{border-top:1px solid #eaf0f6 !important}
+.hse-border-top-hm{border-top:none !important}.hse-border-bottom-hm{border-=
+bottom:none !important}
+}.moz-text-html .hse-column-container{max-width:600px !important;width:600p=
+x !important}
+.moz-text-html .hse-column{display:table-cell;vertical-align:top}.moz-text-=
+html .hse-section .hse-size-12{max-width:600px !important;width:600px !impo=
+rtant}
+@media only screen and (min-width:640px){.hse-column-container{max-width:60=
+0px !important;width:600px !important}
+.hse-column{display:table-cell;vertical-align:top}.hse-section .hse-size-12=
+{max-width:600px !important;width:600px !important}
+}@media only screen and (max-width:639px){ul,blockquote{margin:0;padding:1e=
+m 40px}
+}@media only screen and (max-width:639px){.hse-body-wrapper-td{padding-top:=
+20px !important}
+#module_1711462966428 .hse-column-container{background-color:#fff !importan=
+t} }</style><!--<![endif]--><style type=3D"text/css">#hs_body #hs_cos_wrapp=
+er_main a[x-apple-data-detectors]{color:inherit !important;text-decoration:=
+none !important;font-size:inherit !important;font-family:inherit !important=
+;font-weight:inherit !important;line-height:inherit !important}
+a{text-decoration:underline}p{margin:0}body{-ms-text-size-adjust:100%;-webk=
+it-text-size-adjust:100%;-webkit-font-smoothing:antialiased;moz-osx-font-sm=
+oothing:grayscale}
+table{border-spacing:0;mso-table-lspace:0;mso-table-rspace:0}table,td{borde=
+r-collapse:collapse}
+img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rul=
+e:exactly}</style>
+</head>
+<body id=3D"hs_body" bgcolor=3D"#062F54" style=3D"margin:0 !important; padd=
+ing:0 !important; font-family:Trebuchet MS, sans-serif; font-size:15px; col=
+or:#353454; word-break:break-word">
+<div id=3D"preview_text" style=3D"display:none;font-size:1px;color:#062F54;=
+line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;" la=
+ng=3D"en">
+Last chance to get feedback and input from Amazon designers at the design r=
+eview office hours!</div>
+<!--[if gte mso 9]>
+<v:background xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=3D"t">
+    <v:fill type=3D"tile" color=3D"#ffffff"/>
+</v:background>
+<![endif]-->
+<div class=3D"hse-body-background" lang=3D"en" style=3D"background-color:#0=
+62f54" bgcolor=3D"#062f54">
+<table role=3D"presentation" class=3D"hse-body-wrapper-table" cellpadding=
+=3D"0" cellspacing=3D"0" style=3D"margin:0; padding:0; width:100% !importan=
+t; min-width:320px !important; height:100% !important" width=3D"100%" heigh=
+t=3D"100%">
+<tbody>
+<tr>
+<td class=3D"hse-body-wrapper-td" valign=3D"top" style=3D"font-family:Trebu=
+chet MS, sans-serif; font-size:15px; color:#353454; word-break:break-word; =
+padding-top:20px">
+<div id=3D"hs_cos_wrapper_main" class=3D"hs_cos_wrapper hs_cos_wrapper_widg=
+et hs_cos_wrapper_type_dnd_area" style=3D"color: inherit; font-size: inheri=
+t; line-height: inherit;" data-hs-cos-general-type=3D"widget" data-hs-cos-t=
+ype=3D"dnd_area">
+<div id=3D"module_1711462966428" class=3D"hse-section hse-section-first" st=
+yle=3D"padding-left:10px; padding-right:10px">
+<!--[if !((mso)|(IE))]><!-- -->
+<div class=3D"hse-column-container" style=3D"min-width:280px; max-width:600=
+px; Margin-left:auto; Margin-right:auto; background-color:#ffffff; padding-=
+bottom:20px; padding-top:20px" bgcolor=3D"#ffffff">
+<!--<![endif]--><!--[if (mso)|(IE)]>
+      <div class=3D"hse-column-container" style=3D"min-width:280px;max-widt=
+h:600px;width:100%;Margin-left:auto;Margin-right:auto;">
+      <table align=3D"center" style=3D"width:600px;" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"600" bgcolor=3D"#ffffff">
+      <tr style=3D"background-color:#ffffff;">
+    <![endif]--><!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:600px;padding-bottom:20px; padding-top:=
+20px;">
+<![endif]--><!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:600px">
+<![endif]-->
+<div id=3D"module_1711462966428_0" class=3D"hse-column hse-size-12">
+<div id=3D"hs_cos_wrapper_module_171146296639910" class=3D"hs_cos_wrapper h=
+s_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; f=
+ont-size: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widge=
+t" data-hs-cos-type=3D"module">
+<table class=3D"hse-image-wrapper" role=3D"presentation" width=3D"100%" cel=
+lpadding=3D"0" cellspacing=3D"0">
+<tbody>
+<tr>
+<td class=3D"hs_padded" align=3D"left" valign=3D"top" style=3D"font-family:=
+Trebuchet MS, sans-serif; color:#353454; word-break:break-word; text-align:=
+left; padding:24px 20px 10px; font-size:0px">
+<img alt=3D"AmazonNextxCodepath" src=3D"https://hs-5340557.f.hubspotemail.n=
+et/hub/5340557/hubfs/AmazonNextxCodepath.png?width=3D1120&amp;upscale=3Dtru=
+e&amp;name=3DAmazonNextxCodepath.png" style=3D"outline:none; text-decoratio=
+n:none; max-width:100%; font-size:16px" width=3D"560" align=3D"middle">
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!--[if gte mso 9]></table><![endif]--><!--[if (mso)|(IE)]></td><![endif]--=
+><!--[if (mso)|(IE)]></tr></table><![endif]--></div>
+</div>
+<div id=3D"section_1724082810562" class=3D"hse-section" style=3D"padding-le=
+ft:10px; padding-right:10px">
+<!--[if !((mso)|(IE))]><!-- -->
+<div class=3D"hse-column-container" style=3D"min-width:280px; max-width:600=
+px; Margin-left:auto; Margin-right:auto; background-color:#FFFFFF" bgcolor=
+=3D"#FFFFFF">
+<!--<![endif]--><!--[if (mso)|(IE)]>
+      <div class=3D"hse-column-container" style=3D"min-width:280px;max-widt=
+h:600px;width:100%;Margin-left:auto;Margin-right:auto;">
+      <table align=3D"center" style=3D"width:600px;" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"600" bgcolor=3D"#FFFFFF">
+      <tr style=3D"background-color:#FFFFFF;">
+    <![endif]--><!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:600px;">
+<![endif]--><!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:600px">
+<![endif]-->
+<div id=3D"column_1724084224856_0" class=3D"hse-column hse-size-12">
+<table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=3D"1=
+00%" class=3D"" style=3D"">
+<tbody>
+<tr>
+<td class=3D"hs_padded" style=3D"font-family:Trebuchet MS, sans-serif; font=
+-size:15px; color:#353454; word-break:break-word; padding:10px 20px">
+<div id=3D"hs_cos_wrapper_module_17290845819331" class=3D"hs_cos_wrapper hs=
+_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; fo=
+nt-size: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widget=
+" data-hs-cos-type=3D"module">
+<div id=3D"hs_cos_wrapper_module_17290845819331_" class=3D"hs_cos_wrapper h=
+s_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style=3D"color: inherit=
+; font-size: inherit; line-height: inherit;" data-hs-cos-general-type=3D"wi=
+dget" data-hs-cos-type=3D"rich_text">
+<p style=3D"mso-line-height-rule:exactly; line-height:175%"><span style=3D"=
+font-family: Lato, Tahoma, sans-serif;">Hi UX NeXus,</span></p>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%">&nbsp;</p>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%; font-weight:nor=
+mal">This is it=E2=80=94the final stretch! You have just one week left to s=
+ubmit your entry for the AmazonNext Design Challenge. The deadline is Wedne=
+sday, January 15, 2025, at 11:59 PM ET.</p>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%">&nbsp;</p>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%; font-weight:bol=
+d">Submission Requirements:</p>
+<ol style=3D"mso-line-height-rule:exactly; line-height:175%">
+<li>Slide Deck (10 slides) or Video Pitch (5 minutes max). <strong>For a sl=
+ide deck the required format for submission is PDF, pptx, or ppt. - no othe=
+r file types will be accepted.</strong></li><li>150-word summary answering =
+these key questions:
+<ul style=3D"mso-line-height-rule:exactly; line-height:175%">
+<li>Who is your customer?</li><li>What problem are you solving?</li><li>How=
+ does your design address this problem?</li></ul>
+</li><li>Visual materials such as wireframes, screens, or sketches that exp=
+lain your design.</li></ol>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%; font-weight:bol=
+d">Design Submission Resources:</p>
+<ul style=3D"mso-line-height-rule:exactly; line-height:175%">
+<li><a href=3D"https://nam12.safelinks.protection.outlook.com/?url=3Dhttps%=
+3A%2F%2Fcdxtc04.na1.hubspotlinks.com%2FCtc%2FT%2B113%2FcDXtc04%2FVVHXzb8rVt=
+q8VHWdLc990zMJW1k1H6J5qzgdhN52hRgF5nXHsW69t95C6lZ3l-W8K5Fn95Ppf05W6mvb657Sl=
+Qm0W3Wyk2v19yG2FW4CQ7R761vxzLW3MCQWV7NnGj2W7c_mZC50382MW2d19ry7BHhHKW217gmK=
+7MZPXxN33CrczHhd2-W5WHmqL2W4GRgN7D8Z9k_4ntKW1GZJK41VMxysN715dDkdN8zbW1dCyCz=
+5yMLmvW3SJd2N91JVlFW3cM1Sk2kWCd5W5H5z4P1w915DVpMP6x5zjTWSW5z8WgQ88mvkVW88bV=
+W14mMSsPVdNRgZ2sHKsBW6xzmwY6MYk3bW4PKdlM37jzBtW1dyyYF7xDkBlW7wh-mv9jNJY8N3M=
+n_xJxsYG5W2x7x6Y235pt7W6d-nv1414bthW63jsGv1XddQjW6_TbYt8P9bDFW4GmNmw5PkFvCW=
+7MJc51202GwBW3bjD3F3CfGClW859NTg1mSbFqW8YWd651nZFmcW2JkNvW4VnKrTf791Y_204&a=
+mp;data=3D05%7C02%7Cnzhuang1%40student.gsu.edu%7C086c691f0d444dde91d108dd2f=
+fd8a45%7C704d822c358a47849a1649e20b75f941%7C0%7C0%7C638719488191447208%7CUn=
+known%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4=
+zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata=3DkSUJY%2F2jTw=
+x4XqSzKhakORt5xcdBBcAUaNpEqygsg9Y%3D&amp;reserved=3D0" originalsrc=3D"https=
+://cdxtc04.na1.hubspotlinks.com/Ctc/T+113/cDXtc04/VVHXzb8rVtq8VHWdLc990zMJW=
+1k1H6J5qzgdhN52hRgF5nXHsW69t95C6lZ3l-W8K5Fn95Ppf05W6mvb657SlQm0W3Wyk2v19yG2=
+FW4CQ7R761vxzLW3MCQWV7NnGj2W7c_mZC50382MW2d19ry7BHhHKW217gmK7MZPXxN33CrczHh=
+d2-W5WHmqL2W4GRgN7D8Z9k_4ntKW1GZJK41VMxysN715dDkdN8zbW1dCyCz5yMLmvW3SJd2N91=
+JVlFW3cM1Sk2kWCd5W5H5z4P1w915DVpMP6x5zjTWSW5z8WgQ88mvkVW88bVW14mMSsPVdNRgZ2=
+sHKsBW6xzmwY6MYk3bW4PKdlM37jzBtW1dyyYF7xDkBlW7wh-mv9jNJY8N3Mn_xJxsYG5W2x7x6=
+Y235pt7W6d-nv1414bthW63jsGv1XddQjW6_TbYt8P9bDFW4GmNmw5PkFvCW7MJc51202GwBW3b=
+jD3F3CfGClW859NTg1mSbFqW8YWd651nZFmcW2JkNvW4VnKrTf791Y_204" shash=3D"uerRwl=
+5+X6HV+HxmaFXeOGA0GNa/SVugXntEdbJk1+IkebYxAutY0hHdudT8X4M1FKT/fyjOc5uYmT8YX=
+UiaFJrKHFH1/nVCnMNZsCfLonRq+xHrWUFyzeJ4/6eXKbT85qyZLqAm4344D9JKNzKHZdC4nn5F=
+zLTUoMF3EuS8AP4=3D" rel=3D"noopener" style=3D"color:#7350ff" data-hs-link-i=
+d=3D"0" target=3D"_blank">Design
+ Submission Form</a></li><li><a href=3D"https://nam12.safelinks.protection.=
+outlook.com/?url=3Dhttps%3A%2F%2Fcdxtc04.na1.hubspotlinks.com%2FCtc%2FT%2B1=
+13%2FcDXtc04%2FVVHXzb8rVtq8VHWdLc990zMJW1k1H6J5qzgdhN52hRj63qn9gW95jsWP6lZ3=
+n2N3d7t7_P37VgW5cbC0S8Ph0QZW257kDF5W3h8dW353CkC79cj9VW3w6VyG533NCsVgJzwJ7Pt=
+0NQN998v3cHz68-W637Bjn5N9HmFW127MYg7r4HB7W7xB3rF5Nm_L8W75xf9j2n22HqW899jvS6=
+JKgPcW8g7kG-81HjFzW2HxMdF1gXh_ZW3VnSjn7bkWKFW2Z8Ypy2xfYd1W1jq_mV2Q8RhHW5Fkl=
+5T90qJMhW9krMWh6pjCZpW1y0pYg8DdxJ7W7fz1fg8Nc2DDW2nQl_N2_pvfnW7TD60Q1nH5HLN2=
+lCDRmj_g70W3PD3n22qXjl6W21FGxH5wJdWJW2VlWy93pkwl_W4YnwcS3Tnsm1W72rP0l6S8nTw=
+W3mBSC43r-RmHf6JgMXP04&amp;data=3D05%7C02%7Cnzhuang1%40student.gsu.edu%7C08=
+6c691f0d444dde91d108dd2ffd8a45%7C704d822c358a47849a1649e20b75f941%7C0%7C0%7=
+C638719488191472763%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiI=
+wLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&=
+amp;sdata=3DCkTfmoUQ6crd8gZ07mlvA38n5qs%2BTEft6Jgqe1eNhbM%3D&amp;reserved=
+=3D0" originalsrc=3D"https://cdxtc04.na1.hubspotlinks.com/Ctc/T+113/cDXtc04=
+/VVHXzb8rVtq8VHWdLc990zMJW1k1H6J5qzgdhN52hRj63qn9gW95jsWP6lZ3n2N3d7t7_P37Vg=
+W5cbC0S8Ph0QZW257kDF5W3h8dW353CkC79cj9VW3w6VyG533NCsVgJzwJ7Pt0NQN998v3cHz68=
+-W637Bjn5N9HmFW127MYg7r4HB7W7xB3rF5Nm_L8W75xf9j2n22HqW899jvS6JKgPcW8g7kG-81=
+HjFzW2HxMdF1gXh_ZW3VnSjn7bkWKFW2Z8Ypy2xfYd1W1jq_mV2Q8RhHW5Fkl5T90qJMhW9krMW=
+h6pjCZpW1y0pYg8DdxJ7W7fz1fg8Nc2DDW2nQl_N2_pvfnW7TD60Q1nH5HLN2lCDRmj_g70W3PD=
+3n22qXjl6W21FGxH5wJdWJW2VlWy93pkwl_W4YnwcS3Tnsm1W72rP0l6S8nTwW3mBSC43r-RmHf=
+6JgMXP04" shash=3D"N0LXe0kuiZ8rlkQPMocionPqwgFJCKoog1pGRTZbXqUWmUKCFs1wdrqv=
+2WklpgGlZuyd1aBfH1vx+lZX+vV0/g5ICNmQ5cPpIj4/x4EPpQyBDpUiX9WNFhZmOb2s83p45wH=
+F9KzLy8ZeTdLiRAcqkXR2uRkcGs+R6r4Y0rCt3ZA=3D" rel=3D"noopener" style=3D"colo=
+r:#7350ff" data-hs-link-id=3D"0" target=3D"_blank">Design
+ Submission Guidance</a></li></ul>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%">If you have any=
+ questions or encounter any issues during the submission process, do not he=
+sitate to reach out to
+<a href=3D"mailto:amazonnext_support@amazon.com" rel=3D"noopener" style=3D"=
+color:#7350ff" data-hs-link-id=3D"0" target=3D"_blank">
+amazonnext_support@amazon.com</a> for assistance.&nbsp;</p>
+<ul style=3D"mso-line-height-rule:exactly; line-height:175%">
+</ul>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%"><span style=3D"=
+font-weight: bold;">Last Chance for Feedback:</span></p>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%">Join the final =
+design review office hours for expert input on your project:</p>
+<ul style=3D"mso-line-height-rule:exactly; line-height:175%">
+<li>January 10, 3-4 PM ET</li><li>January 13, 4-5 PM ET</li></ul>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%"><span style=3D"=
+font-weight: bold;">Submission Tips:</span></p>
+<ul style=3D"mso-line-height-rule:exactly; line-height:175%">
+<li>Double-check all files before submission.</li><li>Ensure your submissio=
+n aligns with the accessibility and inclusivity theme of this year=E2=80=99=
+s challenge.</li><li>Use the resources provided in the <a href=3D"https://n=
+am12.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fcdxtc04.na1.hubs=
+potlinks.com%2FCtc%2FT%2B113%2FcDXtc04%2FVVHXzb8rVtq8VHWdLc990zMJW1k1H6J5qz=
+gdhN52hRj63qn9gW95jsWP6lZ3n6W1Kz7fk7cQ5tqVwJ5nk5lWSZwW6NTnk75WjkZvN1_Lwz2Sz=
+bB4W7xnTS92wJ5SgW5d4rY04xx_0tW7C7GbP8cH2LmW6SJR2T1YglmkW2k1DGF67B8QDN8CKPQf=
+M0px7W6D2vJh8gyq1bW8h0rQY3DKyb2W6VRZ8976WyvyW841w8C7thXgZVWCgZN8LCY4bW2N7fv=
+q6YnZxTW6R1l_z6HmMJQW4YbQDh1PYcZ4W42NSTm5gN12hW2L6SvS7M2HYxW23WJwv1Y_-yMW6s=
+JS6s4VlKL5W1gXjf06ZP3G_W8rF1rS2lGNxZW3PF9dR6X5BsLW2WjGJ74nphm1W4Yh8Nx7Q18L8=
+W3_pqJ37NNvKBW2xNCG28zfSKSW9g6dml1WWm3vf7MR3Y804&amp;data=3D05%7C02%7Cnzhua=
+ng1%40student.gsu.edu%7C086c691f0d444dde91d108dd2ffd8a45%7C704d822c358a4784=
+9a1649e20b75f941%7C0%7C0%7C638719488191490893%7CUnknown%7CTWFpbGZsb3d8eyJFb=
+XB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldU=
+IjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata=3DwAecH9IoDW6JnE1maA1MrZUfwKNOVkVggpXLC=
+b856qQ%3D&amp;reserved=3D0" originalsrc=3D"https://cdxtc04.na1.hubspotlinks=
+.com/Ctc/T+113/cDXtc04/VVHXzb8rVtq8VHWdLc990zMJW1k1H6J5qzgdhN52hRj63qn9gW95=
+jsWP6lZ3n6W1Kz7fk7cQ5tqVwJ5nk5lWSZwW6NTnk75WjkZvN1_Lwz2SzbB4W7xnTS92wJ5SgW5=
+d4rY04xx_0tW7C7GbP8cH2LmW6SJR2T1YglmkW2k1DGF67B8QDN8CKPQfM0px7W6D2vJh8gyq1b=
+W8h0rQY3DKyb2W6VRZ8976WyvyW841w8C7thXgZVWCgZN8LCY4bW2N7fvq6YnZxTW6R1l_z6HmM=
+JQW4YbQDh1PYcZ4W42NSTm5gN12hW2L6SvS7M2HYxW23WJwv1Y_-yMW6sJS6s4VlKL5W1gXjf06=
+ZP3G_W8rF1rS2lGNxZW3PF9dR6X5BsLW2WjGJ74nphm1W4Yh8Nx7Q18L8W3_pqJ37NNvKBW2xNC=
+G28zfSKSW9g6dml1WWm3vf7MR3Y804" shash=3D"EVNnE8thp4oFhib31FzZtVXUYpT66s7jox=
+b8xSLEk9Q6YhRbQ5ne1HyncHyROYUG5t7Jm1HaUDEtCcJV3ua3Tw/qtLV5L9C4q54BSeeGXQLhm=
+ZFINg1xsVXzEmyxY+qnPYkVhP2UkcVodQd822InfcwTAHVFhL45Z0FyRenMv5A=3D" rel=3D"n=
+oopener" style=3D"color:#7350ff" data-hs-link-id=3D"0" target=3D"_blank">
+Design Challenge Brief</a> to refine your work.</li></ul>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%">If you=E2=80=99=
+re facing challenges or have questions, email us at
+<a href=3D"mailto:careercenter@codepath.org" rel=3D"noopener" style=3D"colo=
+r:#7350ff" data-hs-link-id=3D"0" target=3D"_blank">
+careercenter@codepath.org</a>.</p>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%">&nbsp;</p>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%">We=E2=80=99re e=
+xcited to see your creative ideas and wish you the best of luck in these fi=
+nal days!</p>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%">&nbsp;</p>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%"><span style=3D"=
+font-family: 'Trebuchet MS', sans-serif;">Best,&nbsp;</span></p>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%"><span style=3D"=
+font-family: 'Trebuchet MS', sans-serif;">The Team at CodePath</span></p>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!--[if gte mso 9]></table><![endif]--><!--[if (mso)|(IE)]></td><![endif]--=
+><!--[if (mso)|(IE)]></tr></table><![endif]--></div>
+</div>
+<div id=3D"section_17114707682773" class=3D"hse-section" style=3D"padding-l=
+eft:10px; padding-right:10px; background-color:#1b1c57" bgcolor=3D"#1b1c57"=
+>
+<!--[if gte mso 9]><table align=3D"center" border=3D"0" cellpadding=3D"0" c=
+ellspacing=3D"0" role=3D"presentation"
+        width=3D"100%" style=3D"width:100%" bgcolor=3D"#1b1c57"
+      ><tbody><tr><td valign=3D"top"><![endif]--><!--[if !((mso)|(IE))]><!-=
+- -->
+<div class=3D"hse-column-container" style=3D"min-width:280px; max-width:600=
+px; Margin-left:auto; Margin-right:auto; padding-bottom:20px; padding-top:2=
+0px">
+<!--<![endif]--><!--[if (mso)|(IE)]>
+      <div class=3D"hse-column-container" style=3D"min-width:280px;max-widt=
+h:600px;width:100%;Margin-left:auto;Margin-right:auto;">
+      <table align=3D"center" style=3D"width:600px;" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation">
+      <tr>
+    <![endif]--><!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:600px;padding-bottom:20px; padding-top:=
+20px;">
+<![endif]--><!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:600px">
+<![endif]-->
+<div id=3D"column-1711470768277-0" class=3D"hse-column hse-size-12">
+<div id=3D"hs_cos_wrapper_module_17114707682772" class=3D"hs_cos_wrapper hs=
+_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; fo=
+nt-size: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widget=
+" data-hs-cos-type=3D"module">
+<table role=3D"presentation" class=3D"hse-footer hse-secondary" width=3D"10=
+0%" cellpadding=3D"0" cellspacing=3D"0" style=3D"font-family:Verdana, sans-=
+serif; font-size:12px; line-height:135%; color:#23496d; margin-bottom:0; pa=
+dding:0">
+<tbody>
+<tr>
+<td align=3D"left" valign=3D"top" style=3D"font-family:Trebuchet MS, sans-s=
+erif; font-size:15px; color:#353454; word-break:break-word; text-align:left=
+; margin-bottom:0; line-height:135%; padding:10px 20px">
+<p style=3D"font-family:Lato,Tahoma,sans-serif;font-size:12px;font-weight:n=
+ormal;text-decoration:none;font-style:normal;color:#FFFFFF">
+CodePath, 5214F Diamond Heights Boulevard, Unit #1154, San Francisco, CA 94=
+131 </p>
+<p><a data-unsubscribe=3D"true" href=3D"https://nam12.safelinks.protection.=
+outlook.com/?url=3Dhttps%3A%2F%2Fhs-5340557.s.hubspotemail.net%2Fhs%2Fprefe=
+rences-center%2Fen%2Fdirect%3Fdata%3DW2nXS-N30h-S4W2KY4DH43R3t6W43P2m621pc_=
+LW1SwCyH2zGVKjW2Hs1MZ3g1Hs0W2xHysJ38mnK6W1_tzvs34hzJ7W1Ztms01SqJN7W2w38t-1Q=
+llBnW2qVz5H3bxdgXW1ZvbjH2YqG82W3Z-Dzk1_jRVVW2Ww0mv3QSWXpW2FRGfg3djsStW250nY=
+d3g71W4W4chptF4mpzJ8W41qzsg2YNPtbW348Wcs43xdG0W4hn0gz4t2J34W3Xw0Tf3S_C9nW2Y=
+J_Ry1Q3Hm6W3yZ4-h2313_sW1Z94L64clDN9W20XnKK1BJTvvW4kFhdG47hMp1W4thGbf2TyMtl=
+W43VVfq36fdJrW45r2By2YLJnqW32DGnZ2-F6CzW21kvPf1LkpljW25g9nM2-8jM7W45DV0b4pG=
+98gW45Bptv3675QQW3Kd8pK23jRffW2xX0Wg3g6dPXW3LRcRf47Vt0rW4ktYfy2YpNcCW3R4sZ0=
+3857tTW1ScSzp4cNbcDW2r10W341WqqPW3Z-_jM43N-cDW3P044G4mKG_WW4ft-Rg3j9MMGW4hM=
+Qzs3DNzRLW2zyGGg49slNSW34p1SW2nHvP9f2KFJjt04%26utm_campaign%3DCareer%2520Ce=
+nter%2520Fall%25202024%26utm_source%3Dhs_automation%26utm_medium%3Demail%26=
+utm_content%3D339617933%26_hsenc%3Dp2ANqtz-9Bh0Ms4ydVIrgEzaM5HOvi_TNc46inoq=
+TTD7gK8qITN3EIJXcOVfKo_oxm9aiYoE-rkBv7RlUdizRb4mzTlX62TN6IoA%26_hsmi%3D3396=
+17933&amp;data=3D05%7C02%7Cnzhuang1%40student.gsu.edu%7C086c691f0d444dde91d=
+108dd2ffd8a45%7C704d822c358a47849a1649e20b75f941%7C0%7C0%7C6387194881915084=
+72%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAi=
+OiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata=3DaatkR=
+F15pCofj%2BzsIPKX0feu%2Ba9vEd2owBCLhhltRX4%3D&amp;reserved=3D0" originalsrc=
+=3D"https://hs-5340557.s.hubspotemail.net/hs/preferences-center/en/direct?d=
+ata=3DW2nXS-N30h-S4W2KY4DH43R3t6W43P2m621pc_LW1SwCyH2zGVKjW2Hs1MZ3g1Hs0W2xH=
+ysJ38mnK6W1_tzvs34hzJ7W1Ztms01SqJN7W2w38t-1QllBnW2qVz5H3bxdgXW1ZvbjH2YqG82W=
+3Z-Dzk1_jRVVW2Ww0mv3QSWXpW2FRGfg3djsStW250nYd3g71W4W4chptF4mpzJ8W41qzsg2YNP=
+tbW348Wcs43xdG0W4hn0gz4t2J34W3Xw0Tf3S_C9nW2YJ_Ry1Q3Hm6W3yZ4-h2313_sW1Z94L64=
+clDN9W20XnKK1BJTvvW4kFhdG47hMp1W4thGbf2TyMtlW43VVfq36fdJrW45r2By2YLJnqW32DG=
+nZ2-F6CzW21kvPf1LkpljW25g9nM2-8jM7W45DV0b4pG98gW45Bptv3675QQW3Kd8pK23jRffW2=
+xX0Wg3g6dPXW3LRcRf47Vt0rW4ktYfy2YpNcCW3R4sZ03857tTW1ScSzp4cNbcDW2r10W341Wqq=
+PW3Z-_jM43N-cDW3P044G4mKG_WW4ft-Rg3j9MMGW4hMQzs3DNzRLW2zyGGg49slNSW34p1SW2n=
+HvP9f2KFJjt04&amp;utm_campaign=3DCareer%20Center%20Fall%202024&amp;utm_sour=
+ce=3Dhs_automation&amp;utm_medium=3Demail&amp;utm_content=3D339617933&amp;_=
+hsenc=3Dp2ANqtz-9Bh0Ms4ydVIrgEzaM5HOvi_TNc46inoqTTD7gK8qITN3EIJXcOVfKo_oxm9=
+aiYoE-rkBv7RlUdizRb4mzTlX62TN6IoA&amp;_hsmi=3D339617933" shash=3D"rVTfvD58g=
+AgB41XGVsE+ch5PBtoyr5PycrvsIrczl2gk1pclqTg3qA05JcZciw6Gkh8BoL0T4Or9ANURO5hm=
+8+rTCM/PKoldoDFg3luNM4zHXAWUrWh2XEnqAcqBRJdyNhgNwB9omM1zB/vqXyPixz6k5sSsiDY=
+5cnAEm2+2GRw=3D" style=3D"font-family:Lato,Tahoma,sans-serif; font-size:12p=
+x; color:#4f5eff; font-weight:bold; text-decoration:none; font-style:normal=
+" data-hs-link-id=3D"0" target=3D"_blank">Unsubscribe</a>
+<a data-unsubscribe=3D"true" href=3D"https://nam12.safelinks.protection.out=
+look.com/?url=3Dhttps%3A%2F%2Fhs-5340557.s.hubspotemail.net%2Fhs%2Fpreferen=
+ces-center%2Fen%2Fpage%3Fdata%3DW2nXS-N30h-S4W2KY4DH43R3t6W43P2m621pc_LW1Sw=
+CyH2zGVKjW2Hs1MZ3g1Hs0W2xHysJ38mnK6W1_tzvs34hzJ7W1Ztms01SqJN7W2w38t-1QllBnW=
+2qVz5H3bxdgXW1ZvbjH2YqG82W3Z-Dzk1_jRVVW2Ww0mv3QSWXpW2FRGfg3djsStW250nYd3g71=
+W4W4chptF4mpzJ8W41qzsg2YNPtbW348Wcs43xdG0W4hn0gz4t2J34W3Xw0Tf3S_C9nW2YJ_Ry1=
+Q3Hm6W3yZ4-h2313_sW1Z94L64clDN9W20XnKK1BJTvvW4kFhdG47hMp1W4thGbf2TyMtlW43VV=
+fq36fdJrW45r2By2YLJnqW32DGnZ2-F6CzW21kvPf1LkpljW25g9nM2-8jM7W45DV0b4pG98gW4=
+5Bptv3675QQW3Kd8pK23jRffW2xX0Wg3g6dPXW3LRcRf47Vt0rW4ktYfy2YpNcCW3R4sZ03857t=
+TW1ScSzp4cNbcDW2r10W341WqqPW3Z-_jM43N-cDW3P044G4mKG_WW4ft-Rg3j9MMGW4hMQzs3D=
+NzRLW2zyGGg49slNSW34p1SW2nHvP9f2KFJjt04%26utm_campaign%3DCareer%2520Center%=
+2520Fall%25202024%26utm_source%3Dhs_automation%26utm_medium%3Demail%26utm_c=
+ontent%3D339617933%26_hsenc%3Dp2ANqtz-9Bh0Ms4ydVIrgEzaM5HOvi_TNc46inoqTTD7g=
+K8qITN3EIJXcOVfKo_oxm9aiYoE-rkBv7RlUdizRb4mzTlX62TN6IoA%26_hsmi%3D339617933=
+&amp;data=3D05%7C02%7Cnzhuang1%40student.gsu.edu%7C086c691f0d444dde91d108dd=
+2ffd8a45%7C704d822c358a47849a1649e20b75f941%7C0%7C0%7C638719488191532972%7C=
+Unknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXa=
+W4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata=3Di9dnWFu0Mq=
+lWt7p%2Fgz6g4VZFpmWUpFkLgLtKdRgPd0E%3D&amp;reserved=3D0" originalsrc=3D"htt=
+ps://hs-5340557.s.hubspotemail.net/hs/preferences-center/en/page?data=3DW2n=
+XS-N30h-S4W2KY4DH43R3t6W43P2m621pc_LW1SwCyH2zGVKjW2Hs1MZ3g1Hs0W2xHysJ38mnK6=
+W1_tzvs34hzJ7W1Ztms01SqJN7W2w38t-1QllBnW2qVz5H3bxdgXW1ZvbjH2YqG82W3Z-Dzk1_j=
+RVVW2Ww0mv3QSWXpW2FRGfg3djsStW250nYd3g71W4W4chptF4mpzJ8W41qzsg2YNPtbW348Wcs=
+43xdG0W4hn0gz4t2J34W3Xw0Tf3S_C9nW2YJ_Ry1Q3Hm6W3yZ4-h2313_sW1Z94L64clDN9W20X=
+nKK1BJTvvW4kFhdG47hMp1W4thGbf2TyMtlW43VVfq36fdJrW45r2By2YLJnqW32DGnZ2-F6CzW=
+21kvPf1LkpljW25g9nM2-8jM7W45DV0b4pG98gW45Bptv3675QQW3Kd8pK23jRffW2xX0Wg3g6d=
+PXW3LRcRf47Vt0rW4ktYfy2YpNcCW3R4sZ03857tTW1ScSzp4cNbcDW2r10W341WqqPW3Z-_jM4=
+3N-cDW3P044G4mKG_WW4ft-Rg3j9MMGW4hMQzs3DNzRLW2zyGGg49slNSW34p1SW2nHvP9f2KFJ=
+jt04&amp;utm_campaign=3DCareer%20Center%20Fall%202024&amp;utm_source=3Dhs_a=
+utomation&amp;utm_medium=3Demail&amp;utm_content=3D339617933&amp;_hsenc=3Dp=
+2ANqtz-9Bh0Ms4ydVIrgEzaM5HOvi_TNc46inoqTTD7gK8qITN3EIJXcOVfKo_oxm9aiYoE-rkB=
+v7RlUdizRb4mzTlX62TN6IoA&amp;_hsmi=3D339617933" shash=3D"nsfgDA7MfZtTuvJj+X=
+QJ7AFG7mqDjm48sgVrHOVYRDVcgChJF71nhoUYCbKLFHFHuZs8JdHXoJbmANhNJtzingjluR2d2=
+hb5RViltIHEjN54JOcqp3cwHq6xoRyUxcjX49Lxeo9/9odONVvK6ev38wuGkMWn7YfA+Sx1oCIO=
+Y/4=3D" style=3D"font-family:Lato,Tahoma,sans-serif; font-size:12px; color:=
+#4f5eff; font-weight:bold; text-decoration:none; font-style:normal" data-hs=
+-link-id=3D"0" target=3D"_blank">
+Manage preferences</a> </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!--[if gte mso 9]></table><![endif]--><!--[if (mso)|(IE)]></td><![endif]--=
+><!--[if (mso)|(IE)]></tr></table><![endif]--></div>
+<!--[if gte mso 9]></td></tr></table><![endif]--></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<img src=3D"https://cDXtc04.na1.hubspotlinks.com/Cto/T+113/cDXtc04/VVHXzb8r=
+Vtq8VHWdLc990zMJW1k1H6J5qzgdhW52hR228fYybc2f71" alt=3D"" width=3D"1" height=
+=3D"1" border=3D"0" style=3D"display:none!important;min-height:1px!importan=
+t;width:1px!important;border-width:0!important;margin-top:0!important;margi=
+n-bottom:0!important;margin-right:0!important;margin-left:0!important;paddi=
+ng-top:0!important;padding-bottom:0!important;padding-right:0!important;pad=
+ding-left:0!important">
+<p></p>
+<div style=3D"background-color:#FFEB9C; width:100%; border-style: solid; bo=
+rder-color:#9C6500; border-width:1pt; padding:2pt; font-size:10pt; line-hei=
+ght:12pt; font-family:'Calibri'; color:Black; text-align: left;">
+<span style=3D"color:#9C6500" ;=3D"" font-weight:bold;=3D""></span>CAUTION:=
+ This email was sent from someone outside of the university. Do not click l=
+inks or open attachments unless you recognize the sender and know the conte=
+nt is safe.</div>
+<br>
+<p></p>
+</body>
+</html>
+
+------=_Part_170994_474257201.1736352014481--
