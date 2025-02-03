@@ -7,7 +7,8 @@ This a group project consist of 3 contributors.
 
 This is timed idea pitch competition initiated by CodePath and AmazonNext.
 
-The prototype is built on Figma, using ppt as pitch form, video of prototype is also included.
+The prototype is built on Figma, using ppt as pitch form, video of prototype is also included(https://youtu.be/glRtCGnhQeM).
+
 
 --------------------------------------
 
